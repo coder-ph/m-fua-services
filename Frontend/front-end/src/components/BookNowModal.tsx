@@ -54,7 +54,9 @@ const BookNowModal: React.FC<BookNowModalProps> = ({ open, onClose }) => {
         >
           &times;
         </button>
-        <h2 className="text-2xl font-bold mb-4 text-blue-700">Book Your Service</h2>
+        <h2 className="text-2xl font-bold mb-4 text-blue-700">
+          Book Your Service
+        </h2>
         {submitted ? (
           <div className="text-green-600 text-center font-semibold text-lg py-8">
             Thank you! You should receive a call from us soon.
@@ -68,14 +70,22 @@ const BookNowModal: React.FC<BookNowModalProps> = ({ open, onClose }) => {
                 value={formik.values.serviceType}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`w-full px-4 py-2 rounded-lg border ${formik.touched.serviceType && formik.errors.serviceType ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500`}
+                className={`w-full px-4 py-2 rounded-lg border ${
+                  formik.touched.serviceType && formik.errors.serviceType
+                    ? "border-red-500"
+                    : "border-gray-300"
+                } focus:ring-2 focus:ring-blue-500`}
               >
-                {serviceOptions.map(opt => (
-                  <option key={opt} value={opt}>{opt}</option>
+                {serviceOptions.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
                 ))}
               </select>
               {formik.touched.serviceType && formik.errors.serviceType && (
-                <div className="text-red-500 text-xs mt-1">{formik.errors.serviceType}</div>
+                <div className="text-red-500 text-xs mt-1">
+                  {formik.errors.serviceType}
+                </div>
               )}
             </div>
             <div>
@@ -86,11 +96,17 @@ const BookNowModal: React.FC<BookNowModalProps> = ({ open, onClose }) => {
                 value={formik.values.location}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`w-full px-4 py-2 rounded-lg border ${formik.touched.location && formik.errors.location ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500`}
-                placeholder="e.g. Nairobi, Westlands"
+                className={`w-full px-4 py-2 rounded-lg border ${
+                  formik.touched.location && formik.errors.location
+                    ? "border-red-500"
+                    : "border-gray-300"
+                } focus:ring-2 focus:ring-blue-500`}
+                placeholder="e.g. Eldoret, Westlands"
               />
               {formik.touched.location && formik.errors.location && (
-                <div className="text-red-500 text-xs mt-1">{formik.errors.location}</div>
+                <div className="text-red-500 text-xs mt-1">
+                  {formik.errors.location}
+                </div>
               )}
             </div>
             <div className="flex gap-3">
@@ -102,10 +118,16 @@ const BookNowModal: React.FC<BookNowModalProps> = ({ open, onClose }) => {
                   value={formik.values.date}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full px-4 py-2 rounded-lg border ${formik.touched.date && formik.errors.date ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500`}
+                  className={`w-full px-4 py-2 rounded-lg border ${
+                    formik.touched.date && formik.errors.date
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  } focus:ring-2 focus:ring-blue-500`}
                 />
                 {formik.touched.date && formik.errors.date && (
-                  <div className="text-red-500 text-xs mt-1">{formik.errors.date}</div>
+                  <div className="text-red-500 text-xs mt-1">
+                    {formik.errors.date}
+                  </div>
                 )}
               </div>
               <div className="flex-1">
@@ -116,10 +138,16 @@ const BookNowModal: React.FC<BookNowModalProps> = ({ open, onClose }) => {
                   value={formik.values.time}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full px-4 py-2 rounded-lg border ${formik.touched.time && formik.errors.time ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500`}
+                  className={`w-full px-4 py-2 rounded-lg border ${
+                    formik.touched.time && formik.errors.time
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  } focus:ring-2 focus:ring-blue-500`}
                 />
                 {formik.touched.time && formik.errors.time && (
-                  <div className="text-red-500 text-xs mt-1">{formik.errors.time}</div>
+                  <div className="text-red-500 text-xs mt-1">
+                    {formik.errors.time}
+                  </div>
                 )}
               </div>
             </div>
@@ -131,11 +159,17 @@ const BookNowModal: React.FC<BookNowModalProps> = ({ open, onClose }) => {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`w-full px-4 py-2 rounded-lg border ${formik.touched.email && formik.errors.email ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500`}
+                className={`w-full px-4 py-2 rounded-lg border ${
+                  formik.touched.email && formik.errors.email
+                    ? "border-red-500"
+                    : "border-gray-300"
+                } focus:ring-2 focus:ring-blue-500`}
                 placeholder="you@email.com"
               />
               {formik.touched.email && formik.errors.email && (
-                <div className="text-red-500 text-xs mt-1">{formik.errors.email}</div>
+                <div className="text-red-500 text-xs mt-1">
+                  {formik.errors.email}
+                </div>
               )}
             </div>
             <div>
@@ -146,11 +180,17 @@ const BookNowModal: React.FC<BookNowModalProps> = ({ open, onClose }) => {
                 value={formik.values.phone}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className={`w-full px-4 py-2 rounded-lg border ${formik.touched.phone && formik.errors.phone ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500`}
+                className={`w-full px-4 py-2 rounded-lg border ${
+                  formik.touched.phone && formik.errors.phone
+                    ? "border-red-500"
+                    : "border-gray-300"
+                } focus:ring-2 focus:ring-blue-500`}
                 placeholder="e.g. +254700000000"
               />
               {formik.touched.phone && formik.errors.phone && (
-                <div className="text-red-500 text-xs mt-1">{formik.errors.phone}</div>
+                <div className="text-red-500 text-xs mt-1">
+                  {formik.errors.phone}
+                </div>
               )}
             </div>
             <div>

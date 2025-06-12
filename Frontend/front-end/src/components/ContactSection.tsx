@@ -19,7 +19,9 @@ const ContactSection = () => {
     validationSchema: Yup.object({
       firstName: Yup.string().required("First Name is required"),
       lastName: Yup.string().required("Last Name is required"),
-      email: Yup.string().email("Invalid email address").required("Email is required"),
+      email: Yup.string()
+        .email("Invalid email address")
+        .required("Email is required"),
       phone: Yup.string().required("Phone is required"),
       serviceType: Yup.string().required("Service Type is required"),
       message: Yup.string().required("Message is required"),
@@ -64,7 +66,11 @@ const ContactSection = () => {
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
               Request a Free Quote
             </h3>
-            <form className="space-y-6" onSubmit={formik.handleSubmit} noValidate>
+            <form
+              className="space-y-6"
+              onSubmit={formik.handleSubmit}
+              noValidate
+            >
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -76,11 +82,17 @@ const ContactSection = () => {
                     value={formik.values.firstName}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`w-full px-4 py-3 rounded-lg border ${formik.touched.firstName && formik.errors.firstName ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      formik.touched.firstName && formik.errors.firstName
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                     placeholder="John"
                   />
                   {formik.touched.firstName && formik.errors.firstName && (
-                    <div className="text-red-500 text-xs mt-1">{formik.errors.firstName}</div>
+                    <div className="text-red-500 text-xs mt-1">
+                      {formik.errors.firstName}
+                    </div>
                   )}
                 </div>
                 <div>
@@ -93,11 +105,17 @@ const ContactSection = () => {
                     value={formik.values.lastName}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`w-full px-4 py-3 rounded-lg border ${formik.touched.lastName && formik.errors.lastName ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+                    className={`w-full px-4 py-3 rounded-lg border ${
+                      formik.touched.lastName && formik.errors.lastName
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                     placeholder="Doe"
                   />
                   {formik.touched.lastName && formik.errors.lastName && (
-                    <div className="text-red-500 text-xs mt-1">{formik.errors.lastName}</div>
+                    <div className="text-red-500 text-xs mt-1">
+                      {formik.errors.lastName}
+                    </div>
                   )}
                 </div>
               </div>
@@ -111,11 +129,17 @@ const ContactSection = () => {
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full px-4 py-3 rounded-lg border ${formik.touched.email && formik.errors.email ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+                  className={`w-full px-4 py-3 rounded-lg border ${
+                    formik.touched.email && formik.errors.email
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                   placeholder="john@example.com"
                 />
                 {formik.touched.email && formik.errors.email && (
-                  <div className="text-red-500 text-xs mt-1">{formik.errors.email}</div>
+                  <div className="text-red-500 text-xs mt-1">
+                    {formik.errors.email}
+                  </div>
                 )}
               </div>
               <div>
@@ -128,11 +152,17 @@ const ContactSection = () => {
                   value={formik.values.phone}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full px-4 py-3 rounded-lg border ${formik.touched.phone && formik.errors.phone ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+                  className={`w-full px-4 py-3 rounded-lg border ${
+                    formik.touched.phone && formik.errors.phone
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                   placeholder="+254740786838"
                 />
                 {formik.touched.phone && formik.errors.phone && (
-                  <div className="text-red-500 text-xs mt-1">{formik.errors.phone}</div>
+                  <div className="text-red-500 text-xs mt-1">
+                    {formik.errors.phone}
+                  </div>
                 )}
               </div>
               <div>
@@ -144,7 +174,11 @@ const ContactSection = () => {
                   value={formik.values.serviceType}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full px-4 py-3 rounded-lg border ${formik.touched.serviceType && formik.errors.serviceType ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+                  className={`w-full px-4 py-3 rounded-lg border ${
+                    formik.touched.serviceType && formik.errors.serviceType
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                 >
                   <option>Residential Cleaning</option>
                   <option>Commercial Cleaning</option>
@@ -153,7 +187,9 @@ const ContactSection = () => {
                   <option>Move-in/Move-out</option>
                 </select>
                 {formik.touched.serviceType && formik.errors.serviceType && (
-                  <div className="text-red-500 text-xs mt-1">{formik.errors.serviceType}</div>
+                  <div className="text-red-500 text-xs mt-1">
+                    {formik.errors.serviceType}
+                  </div>
                 )}
               </div>
               <div>
@@ -166,11 +202,17 @@ const ContactSection = () => {
                   value={formik.values.message}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className={`w-full px-4 py-3 rounded-lg border ${formik.touched.message && formik.errors.message ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+                  className={`w-full px-4 py-3 rounded-lg border ${
+                    formik.touched.message && formik.errors.message
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  } focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                   placeholder="Tell us about your cleaning needs..."
                 ></textarea>
                 {formik.touched.message && formik.errors.message && (
-                  <div className="text-red-500 text-xs mt-1">{formik.errors.message}</div>
+                  <div className="text-red-500 text-xs mt-1">
+                    {formik.errors.message}
+                  </div>
                 )}
               </div>
               <button
@@ -182,81 +224,85 @@ const ContactSection = () => {
                 {loading ? "Sending..." : "Get Free Quote"}
               </button>
               {status === "success" && (
-                <div className="text-green-600 text-center mt-4 font-semibold">Thank you! We received your request.</div>
+                <div className="text-green-600 text-center mt-4 font-semibold">
+                  Thank you! We received your request.
+                </div>
               )}
               {status === "error" && (
-                <div className="text-red-600 text-center mt-4 font-semibold">Sorry, something went wrong. Please try again.</div>
+                <div className="text-red-600 text-center mt-4 font-semibold">
+                  Sorry, something went wrong. Please try again.
+                </div>
               )}
             </form>
           </div>
-        {/* Contact Info */}
-        <div className="space-y-8">
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Contact Information
-            </h3>
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="bg-blue-100 p-3 rounded-lg">
-                  <Phone className="h-6 w-6 text-blue-600" />
+          {/* Contact Info */}
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Contact Information
+              </h3>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="bg-blue-100 p-3 rounded-lg">
+                    <Phone className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900">Phone</p>
+                    <p className="text-gray-600">+254740786838</p>
+                    <p className="text-sm text-gray-500">
+                      Available 24/7 for emergencies
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-semibold text-gray-900">Phone</p>
-                  <p className="text-gray-600">+254740786838</p>
-                  <p className="text-sm text-gray-500">
-                    Available 24/7 for emergencies
-                  </p>
+                <div className="flex items-start space-x-4">
+                  <div className="bg-green-100 p-3 rounded-lg">
+                    <Mail className="h-6 w-6 text-green-600" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900">Email</p>
+                    <p className="text-gray-600">
+                      info@Milele Cleaning Services.com
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      We'll respond within 2 hours
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="bg-green-100 p-3 rounded-lg">
-                  <Mail className="h-6 w-6 text-green-600" />
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-900">Email</p>
-                  <p className="text-gray-600">
-                    info@Milele Cleaning Services.com
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    We'll respond within 2 hours
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="bg-purple-100 p-3 rounded-lg">
-                  <MapPin className="h-6 w-6 text-purple-600" />
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-900">Service Area</p>
-                  <p className="text-gray-600">Nairobi</p>
-                  <p className="text-sm text-gray-500">
-                    Free estimates within 25 miles
-                  </p>
+                <div className="flex items-start space-x-4">
+                  <div className="bg-purple-100 p-3 rounded-lg">
+                    <MapPin className="h-6 w-6 text-purple-600" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900">Service Area</p>
+                    <p className="text-gray-600">Eldoret</p>
+                    <p className="text-sm text-gray-500">
+                      Free estimates within 25 miles
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="bg-blue-50 rounded-2xl p-6">
-            <h4 className="font-bold text-gray-900 mb-4">Business Hours</h4>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-gray-600">Monday - Friday</span>
-                <span className="font-medium">8:00 AM - 6:00 PM</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Saturday</span>
-                <span className="font-medium">9:00 AM - 4:00 PM</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Sunday</span>
-                <span className="font-medium">Emergency Only</span>
+            <div className="bg-blue-50 rounded-2xl p-6">
+              <h4 className="font-bold text-gray-900 mb-4">Business Hours</h4>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Monday - Friday</span>
+                  <span className="font-medium">8:00 AM - 6:00 PM</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Saturday</span>
+                  <span className="font-medium">9:00 AM - 4:00 PM</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Sunday</span>
+                  <span className="font-medium">Emergency Only</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   );
 };
 

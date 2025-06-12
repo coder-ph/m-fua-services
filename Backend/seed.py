@@ -84,7 +84,7 @@ def create_sample_users():
         user_id=client1.id,
         bio='Looking for reliable service providers',
         address='123 Main St',
-        city='Nairobi',
+        city='Eldoret',
         country='Kenya'
     )
     db.session.add(client1_profile)
@@ -94,7 +94,7 @@ def create_sample_users():
         bio='Professional service provider with 5+ years of experience',
         company_name='Mike\'s Services',
         address='456 Service Rd',
-        city='Nairobi',
+        city='Eldoret',
         country='Kenya',
         service_radius=25,
         business_hours={

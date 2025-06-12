@@ -60,7 +60,7 @@ def create_service():
               example: "2025-06-30T18:00:00"
             location:
               type: string
-              example: "Nairobi, Kenya"
+              example: "Eldoret, Kenya"
             latitude:
               type: number
               format: float
