@@ -109,7 +109,9 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
             <Phone className="h-4 w-4 mr-2" />
             +254740786838
           </button>
-
+          <button className="hidden md:flex bg-white border border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors" style={{marginLeft: 8}}>
+            Login
+          </button>
           <button
             className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -176,6 +178,9 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
             <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center justify-center">
               <Phone className="h-4 w-4 mr-2" />
               +254740786838
+            </button>
+            <button className="w-full mt-2 bg-white border border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+              Login
             </button>
           </nav>
         </div>
