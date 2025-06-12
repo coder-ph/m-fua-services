@@ -1,4 +1,5 @@
 import { Star, Calendar, Shield, Clock, CheckCircle } from "lucide-react";
+import HeroImage from "../assets/tinywow_Full shot men cleaning office _ Free Photo_81561167.webp";
 
 const HeroSection = () => (
   <main className="pt-16 px-4 lg:px-6 py-12 lg:py-20 bg-gradient-to-br from-blue-50 via-white to-cyan-50">
@@ -55,7 +56,7 @@ const HeroSection = () => (
         {/* Right Column - Visual Elements */}
         <div className="relative">
           <div className="relative bg-gradient-to-br rounded-3xl shadow-2xl">
-            <img src="https://i.pinimg.com/736x/b6/b3/27/b6b327069abe320eed84ba7c3b721970.jpg" />
+            <img src={HeroImage} />
             <div className="absolute -bottom-4 -right-4 bg-green-500 text-white p-4 rounded-2xl shadow-lg">
               <div className="text-center">
                 <p className="text-2xl font-bold">2min</p>
