@@ -1,51 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import { ArrowRight, Phone, Mail, MapPin } from "lucide-react";
 
 const ContactSection = () => {
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    serviceType: "Residential Cleaning",
-    message: "",
-  });
-  const [status, setStatus] = useState<null | "success" | "error">(null);
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = React.useState<null | "success" | "error">(null);
+  const [loading, setLoading] = React.useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setStatus(null);
-    try {
-      const res = await fetch("/api/send-quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setStatus("success");
-        setForm({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          serviceType: "Residential Cleaning",
-          message: "",
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      serviceType: "Residential Cleaning",
+      message: "",
+    },
+    validationSchema: Yup.object({
+      firstName: Yup.string().required("First Name is required"),
+      lastName: Yup.string().required("Last Name is required"),
+      email: Yup.string().email("Invalid email address").required("Email is required"),
+      phone: Yup.string().required("Phone is required"),
+      serviceType: Yup.string().required("Service Type is required"),
+      message: Yup.string().required("Message is required"),
+    }),
+    onSubmit: async (values, { resetForm }) => {
+      setLoading(true);
+      setStatus(null);
+      try {
+        const res = await fetch("/api/send-quote", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
         });
-      } else {
+        if (res.ok) {
+          setStatus("success");
+          resetForm();
+        } else {
+          setStatus("error");
+        }
+      } catch {
         setStatus("error");
+      } finally {
+        setLoading(false);
       }
-    } catch {
-      setStatus("error");
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+  });
 
   return (
     <section id="contact" className="px-4 lg:px-6 py-16 bg-white">
@@ -64,7 +64,7 @@ const ContactSection = () => {
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
               Request a Free Quote
             </h3>
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-6" onSubmit={formik.handleSubmit} noValidate>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -73,12 +73,15 @@ const ContactSection = () => {
                   <input
                     type="text"
                     name="firstName"
-                    value={form.firstName}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={formik.values.firstName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className={`w-full px-4 py-3 rounded-lg border ${formik.touched.firstName && formik.errors.firstName ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                     placeholder="John"
-                    required
                   />
+                  {formik.touched.firstName && formik.errors.firstName && (
+                    <div className="text-red-500 text-xs mt-1">{formik.errors.firstName}</div>
+                  )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -87,12 +90,15 @@ const ContactSection = () => {
                   <input
                     type="text"
                     name="lastName"
-                    value={form.lastName}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={formik.values.lastName}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className={`w-full px-4 py-3 rounded-lg border ${formik.touched.lastName && formik.errors.lastName ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                     placeholder="Doe"
-                    required
                   />
+                  {formik.touched.lastName && formik.errors.lastName && (
+                    <div className="text-red-500 text-xs mt-1">{formik.errors.lastName}</div>
+                  )}
                 </div>
               </div>
               <div>
@@ -102,12 +108,15 @@ const ContactSection = () => {
                 <input
                   type="email"
                   name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`w-full px-4 py-3 rounded-lg border ${formik.touched.email && formik.errors.email ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                   placeholder="john@example.com"
-                  required
                 />
+                {formik.touched.email && formik.errors.email && (
+                  <div className="text-red-500 text-xs mt-1">{formik.errors.email}</div>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -116,11 +125,15 @@ const ContactSection = () => {
                 <input
                   type="tel"
                   name="phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  value={formik.values.phone}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`w-full px-4 py-3 rounded-lg border ${formik.touched.phone && formik.errors.phone ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                   placeholder="+254740786838"
                 />
+                {formik.touched.phone && formik.errors.phone && (
+                  <div className="text-red-500 text-xs mt-1">{formik.errors.phone}</div>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -128,9 +141,10 @@ const ContactSection = () => {
                 </label>
                 <select
                   name="serviceType"
-                  value={form.serviceType}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  value={formik.values.serviceType}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`w-full px-4 py-3 rounded-lg border ${formik.touched.serviceType && formik.errors.serviceType ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                 >
                   <option>Residential Cleaning</option>
                   <option>Commercial Cleaning</option>
@@ -138,6 +152,9 @@ const ContactSection = () => {
                   <option>Deep Cleaning</option>
                   <option>Move-in/Move-out</option>
                 </select>
+                {formik.touched.serviceType && formik.errors.serviceType && (
+                  <div className="text-red-500 text-xs mt-1">{formik.errors.serviceType}</div>
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -146,25 +163,29 @@ const ContactSection = () => {
                 <textarea
                   name="message"
                   rows={4}
-                  value={form.message}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  value={formik.values.message}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`w-full px-4 py-3 rounded-lg border ${formik.touched.message && formik.errors.message ? 'border-red-500' : 'border-gray-300'} focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                   placeholder="Tell us about your cleaning needs..."
                 ></textarea>
+                {formik.touched.message && formik.errors.message && (
+                  <div className="text-red-500 text-xs mt-1">{formik.errors.message}</div>
+                )}
               </div>
               <button
                 type="submit"
                 className="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold text-lg"
-                disabled={loading}
+                disabled={loading || !formik.isValid || !formik.dirty}
               >
                 <ArrowRight className="h-5 w-5 inline mr-2" />
                 {loading ? "Sending..." : "Get Free Quote"}
               </button>
               {status === "success" && (
-                <div className="text-green-600 font-semibold text-center">Your request has been sent successfully!</div>
+                <div className="text-green-600 text-center mt-4 font-semibold">Thank you! We received your request.</div>
               )}
               {status === "error" && (
-                <div className="text-red-600 font-semibold text-center">There was an error sending your request. Please try again.</div>
+                <div className="text-red-600 text-center mt-4 font-semibold">Sorry, something went wrong. Please try again.</div>
               )}
             </form>
           </div>
