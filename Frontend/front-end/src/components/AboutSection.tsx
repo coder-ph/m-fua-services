@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Users, Shield, Sparkles } from "lucide-react";
 
 const AboutSection = () => (

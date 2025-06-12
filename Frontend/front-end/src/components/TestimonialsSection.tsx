@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Star, Quote, Users, Building, Home, ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
@@ -201,7 +201,6 @@ const TestimonialsSection = () => {
                 <TestimonialCard
                   key={idx + t.id}
                   testimonial={t}
-                  cardsPerView={cardsPerView}
                 />
               ))}
             </div>
@@ -226,7 +225,7 @@ const TestimonialsSection = () => {
 // Read More Card Component
 const MAX_PREVIEW_LENGTH = 120;
 
-function TestimonialCard({ testimonial, cardsPerView }: { testimonial: typeof testimonials[0]; cardsPerView: number }) {
+function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
   const [expanded, setExpanded] = useState(false);
   const isLong = testimonial.text.length > MAX_PREVIEW_LENGTH;
   const displayText = expanded || !isLong ? testimonial.text : testimonial.text.slice(0, MAX_PREVIEW_LENGTH) + "...";

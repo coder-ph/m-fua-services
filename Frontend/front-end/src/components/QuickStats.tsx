@@ -1,4 +1,4 @@
-import React from "react";
+
 
 const QuickStats = () => (
   <section className="px-4 lg:px-6 py-12 bg-white">
