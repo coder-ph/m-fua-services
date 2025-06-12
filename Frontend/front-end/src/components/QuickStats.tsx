@@ -1,5 +1,4 @@
 
-
 const QuickStats = () => (
   <section className="px-4 lg:px-6 py-12 bg-white">
     <div className="max-w-7xl mx-auto">

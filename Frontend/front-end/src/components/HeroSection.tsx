@@ -1,4 +1,3 @@
-
 import { Star, Calendar, Shield, Clock, CheckCircle } from "lucide-react";
 
 const HeroSection = () => (

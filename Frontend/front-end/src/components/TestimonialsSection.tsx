@@ -201,7 +201,7 @@ const TestimonialsSection = () => {
                 <TestimonialCard
                   key={idx + t.id}
                   testimonial={t}
-                />
+                                  />
               ))}
             </div>
           </div>

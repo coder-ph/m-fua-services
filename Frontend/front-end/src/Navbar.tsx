@@ -1,6 +1,5 @@
 // components/Header/Header.tsx
 import { useState, useRef } from "react";
-import { Link } from 'react-router-dom';
 import { Phone, Menu, X, ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 
 interface HeaderProps {
@@ -72,36 +71,36 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
             >
               <div className="grid grid-cols-2 gap-4">
                 {cleaningServices.map((service, index) => (
-                  <Link
+                  <a
                     key={index}
-                    to="/services"
+                    href="#"
                     className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded transition-colors"
                   >
                     {service}
-                  </Link>
+                  </a>
                 ))}
               </div>
             </div>
           </div>
 
-          <Link
-            to="/services"
+          <a
+            href="#about"
             className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
           >
-            Services
-          </Link>
-          <Link
-            to="/testimonials"
+            About
+          </a>
+          <a
+            href="#testimonials"
             className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
           >
             Reviews
-          </Link>
-          <Link
-            to="/contact"
+          </a>
+          <a
+            href="#contact"
             className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
           >
             Contact
-          </Link>
+          </a>
         </nav>
 
         <div className="flex items-center space-x-4">
@@ -134,34 +133,34 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
               </button>
               <div className="grid grid-cols-2 gap-2 pl-4">
                 {cleaningServices.map((service, index) => (
-                  <Link
+                  <a
                     key={index}
-                    to="/services"
+                    href="#"
                     className="block text-sm py-2 text-gray-700 hover:text-blue-600"
                   >
                     {service}
-                  </Link>
+                  </a>
                 ))}
               </div>
             </div>
-            <Link
-              to="/services"
+            <a
+              href="#about"
               className="block text-gray-700 hover:text-blue-600 transition-colors font-medium"
             >
-              Services
-            </Link>
-            <Link
-              to="/testimonials"
+              About
+            </a>
+            <a
+              href="#testimonials"
               className="block text-gray-700 hover:text-blue-600 transition-colors font-medium"
             >
               Reviews
-            </Link>
-            <Link
-              to="/contact"
+            </a>
+            <a
+              href="#contact"
               className="block text-gray-700 hover:text-blue-600 transition-colors font-medium"
             >
               Contact
-            </Link>
+            </a>
             <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center justify-center">
               <Phone className="h-4 w-4 mr-2" />
               +254740786838

@@ -1,4 +1,3 @@
-
 import { Sparkles, Facebook, Twitter, Instagram, Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => (
