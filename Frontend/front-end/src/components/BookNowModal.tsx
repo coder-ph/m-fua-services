@@ -46,7 +46,7 @@ const BookNowModal: React.FC<BookNowModalProps> = ({ open, onClose }) => {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-80">
       <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-8 relative">
         <button
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl"
@@ -170,7 +170,7 @@ const BookNowModal: React.FC<BookNowModalProps> = ({ open, onClose }) => {
               className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors"
               disabled={!formik.isValid || !formik.dirty}
             >
-              Okay
+              Send
             </button>
           </form>
         )}

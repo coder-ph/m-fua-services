@@ -9,6 +9,7 @@ interface HeaderProps {
 
 export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
   const [isServicesHovered, setIsServicesHovered] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const cleaningServices = [
@@ -127,21 +128,32 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
         <div className="md:hidden bg-white border-t border-gray-100">
           <nav className="px-4 py-4 space-y-4">
             <div className="space-y-2">
-              <button className="w-full flex justify-between items-center text-gray-700 hover:text-blue-600 transition-colors font-medium">
+              <button
+                className="w-full flex justify-between items-center text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                onClick={() => setIsMobileServicesOpen((open) => !open)}
+                aria-expanded={isMobileServicesOpen}
+                aria-controls="mobile-services-list"
+              >
                 Services
-                <ChevronDown className="h-4 w-4" />
+                {isMobileServicesOpen ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
               </button>
-              <div className="grid grid-cols-2 gap-2 pl-4">
-                {cleaningServices.map((service, index) => (
-                  <a
-                    key={index}
-                    href="#"
-                    className="block text-sm py-2 text-gray-700 hover:text-blue-600"
-                  >
-                    {service}
-                  </a>
-                ))}
-              </div>
+              {isMobileServicesOpen && (
+                <div id="mobile-services-list" className="grid grid-cols-2 gap-2 pl-4">
+                  {cleaningServices.map((service, index) => (
+                    <a
+                      key={index}
+                      href="#"
+                      className="block text-sm py-2 text-gray-700 hover:text-blue-600"
+                    >
+                      {service}
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
             <a
               href="#about"
