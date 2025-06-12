@@ -99,6 +99,7 @@ const getCardsPerView = () => {
 
 const TestimonialsSection = () => {
   const [current, setCurrent] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [cardsPerView, setCardsPerView] = useState(getCardsPerView());
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -114,7 +115,7 @@ const TestimonialsSection = () => {
   const CARDS_TO_SHOW = 4;
   // Clamp current index between 0 and total - CARDS_TO_SHOW
   const maxIndex = Math.max(0, total - CARDS_TO_SHOW);
-  const visibleTestimonials = testimonials.slice(current, current + CARDS_TO_SHOW);
+  
 
   // Seamless infinite loop logic
   useEffect(() => {
@@ -147,6 +148,24 @@ const TestimonialsSection = () => {
     setCurrent((prev) => Math.min(maxIndex, prev + 1));
   };
 
+  // Auto-swiping effect
+  useEffect(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    if (current < maxIndex) {
+      timerRef.current = setTimeout(() => {
+        setCurrent((prev) => Math.min(maxIndex, prev + 1));
+      }, 5000);
+    } else {
+      // Optionally, loop to start:
+      timerRef.current = setTimeout(() => {
+        setCurrent(0);
+      }, 5000);
+    }
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [current, maxIndex]);
+
   return (
     <section id="testimonials" className="px-4 lg:px-6 py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto">
@@ -167,34 +186,25 @@ const TestimonialsSection = () => {
           </button>
 
           {/* Cards */}
-          <div className="flex w-full gap-6 justify-between">
-            {visibleTestimonials.map((t, idx) => (
-              <div
-                key={idx + t.id}
-                className="bg-white rounded-2xl p-5 sm:p-6 md:p-6 shadow-lg flex flex-col justify-between min-h-[220px] min-w-0 w-1/4"
-                style={{
-                  minHeight: 180,
-                  boxSizing: "border-box",
-                }}
-              >
-                <div className="flex items-center mb-2">
-                  {[...Array(t.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />
-                  ))}
-                </div>
-                <Quote className="h-7 w-7 text-blue-600 mb-2" />
-                <p className="text-gray-600 mb-4 text-sm italic">{`"${t.text}"`}</p>
-                <div className="flex items-center mt-auto">
-                  <div className={`${t.bgColor} p-2 rounded-full mr-3`}>
-                    <t.icon className={`h-5 w-5 ${t.iconColor}`} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900 text-sm">{t.name}</p>
-                    <p className="text-xs text-gray-600">{t.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+          {/* DEBUG: Show cardsPerView value */}
+          <div className="text-xs text-gray-400 absolute top-0 right-0">cardsPerView: {cardsPerView}</div>
+          <div className="w-full overflow-hidden">
+            <div
+              ref={trackRef}
+              className="flex gap-6 w-full"
+              style={{
+                transform: `translateX(-${(100 / testimonials.length) * current}%)`,
+                transition: "transform 0.7s cubic-bezier(0.4,0,0.2,1)",
+              }}
+            >
+              {testimonials.map((t, idx) => (
+                <TestimonialCard
+                  key={idx + t.id}
+                  testimonial={t}
+                  cardsPerView={cardsPerView}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Right arrow */}
@@ -212,5 +222,56 @@ const TestimonialsSection = () => {
     </section>
   );
 };
+
+// Read More Card Component
+const MAX_PREVIEW_LENGTH = 120;
+
+function TestimonialCard({ testimonial, cardsPerView }: { testimonial: typeof testimonials[0]; cardsPerView: number }) {
+  const [expanded, setExpanded] = useState(false);
+  const isLong = testimonial.text.length > MAX_PREVIEW_LENGTH;
+  const displayText = expanded || !isLong ? testimonial.text : testimonial.text.slice(0, MAX_PREVIEW_LENGTH) + "...";
+  const Icon = testimonial.icon;
+
+  return (
+    <div
+      className="bg-white rounded-2xl p-5 sm:p-6 md:p-6 shadow-lg flex flex-col justify-between min-h-[220px]"
+      style={{
+        minHeight: 180,
+        boxSizing: "border-box",
+        flex: "1 1 0",
+        minWidth: 320,
+        maxWidth: 400,
+        width: '100%',
+      }}
+    >
+      <div className="flex items-center mb-2">
+        {[...Array(testimonial.rating)].map((_, i) => (
+          <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />
+        ))}
+      </div>
+      <Quote className="h-7 w-7 text-blue-600 mb-2" />
+      <p className="text-gray-600 mb-4 text-sm italic">
+        {`"${displayText}"`}
+        {isLong && !expanded && (
+          <span
+            className="text-gray-400 cursor-pointer ml-2"
+            onClick={() => setExpanded(true)}
+          >
+            Read more
+          </span>
+        )}
+      </p>
+      <div className="flex items-center mt-auto">
+        <div className={`${testimonial.bgColor} p-2 rounded-full mr-3`}>
+          <Icon className={`h-5 w-5 ${testimonial.iconColor}`} />
+        </div>
+        <div>
+          <p className="font-semibold text-gray-900 text-sm">{testimonial.name}</p>
+          <p className="text-xs text-gray-600">{testimonial.role}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default TestimonialsSection;

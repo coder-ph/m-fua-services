@@ -58,6 +58,7 @@ def register_blueprints(app):
     from routes.category_routes import category_bp
     from routes.rating_routes import rating_bp
     from routes.notification_routes import notification_bp
+    from routes.quote_routes import quote_bp
     
     # Register blueprints
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
@@ -65,6 +66,7 @@ def register_blueprints(app):
     app.register_blueprint(category_bp, url_prefix='/api/categories')
     app.register_blueprint(rating_bp, url_prefix='/api/ratings')
     app.register_blueprint(notification_bp, url_prefix='/api/notifications')
+    app.register_blueprint(quote_bp, url_prefix='/api/quotes')
 
 def register_error_handlers(app):
     """Register error handlers."""
