@@ -8,3 +8,18 @@
 2025-06-06 22:21:14,453 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 22:21:14] "[36mGET /flasgger_static/lib/jquery.min.js HTTP/1.1[0m" 304 -
 2025-06-06 22:21:14,775 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 22:21:14] "[36mGET /flasgger_static/favicon-32x32.png HTTP/1.1[0m" 304 -
 2025-06-06 22:21:14,842 - werkzeug - INFO - 127.0.0.1 - - [06/Jun/2025 22:21:14] "GET /apispec.json HTTP/1.1" 200 -
+2025-06-15 11:43:28,276 - root - WARNING - Could not import tasks: attempted relative import beyond top-level package. Running without Celery tasks.
+2025-06-15 11:43:28,666 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.31.155:5000
+2025-06-15 11:43:28,666 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-15 11:43:28,670 - werkzeug - INFO -  * Restarting with stat
+2025-06-15 11:43:31,016 - root - WARNING - Could not import tasks: attempted relative import beyond top-level package. Running without Celery tasks.
+2025-06-15 11:43:31,462 - werkzeug - WARNING -  * Debugger is active!
+2025-06-15 11:43:31,756 - werkzeug - INFO -  * Debugger PIN: 429-504-504
+2025-06-15 12:09:04,234 - werkzeug - INFO -  * Detected change in '/home/phyl/Development/m-fua/Backend/models/user.py', reloading
+2025-06-15 12:09:04,976 - werkzeug - INFO -  * Restarting with stat
+2025-06-15 12:09:08,234 - root - WARNING - Could not import tasks: attempted relative import beyond top-level package. Running without Celery tasks.
+2025-06-15 12:09:08,824 - werkzeug - WARNING -  * Debugger is active!
+2025-06-15 12:09:08,825 - werkzeug - INFO -  * Debugger PIN: 429-504-504

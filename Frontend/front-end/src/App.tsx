@@ -1,15 +1,11 @@
-import { useState, useEffect } from 'react';
-import Navbar from "./Navbar";
-import HeroSection from "./components/HeroSection";
-import QuickStats from "./components/QuickStats";
-import ServicesSection from "./components/ServicesSection";
-import AboutSection from "./components/AboutSection";
-import TestimonialsSection from "./components/TestimonialsSection";
-import CTASection from "./components/CTASection";
-import ContactSection from "./components/ContactSection";
-import Footer from "./components/Footer";
-import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
-import ChatbotFloatingButton from "./components/ChatbotFloatingButton";
+import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+
+// Pages
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 
 
 function App() {
@@ -19,22 +15,14 @@ function App() {
       history.replaceState(null, '', window.location.pathname);
     }
   }, []);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // Manage menu open in HomePage, not needed here
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      <HeroSection />
-      <QuickStats />
-      <ServicesSection />
-      <AboutSection />
-      <TestimonialsSection />
-      <CTASection />
-      <ContactSection />
-      <Footer />
-      <WhatsAppFloatingButton />
-      <ChatbotFloatingButton />
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
+    </Routes>
   );
 }
 

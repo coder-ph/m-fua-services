@@ -1,5 +1,7 @@
 // components/Header/Header.tsx
+// Updated: Added Signup button (desktop & mobile)
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { Phone, Menu, X, ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 
 interface HeaderProps {
@@ -109,9 +111,12 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
             <Phone className="h-4 w-4 mr-2" />
             +254740786838
           </button>
-          <button className="hidden md:flex bg-white border border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors" style={{marginLeft: 8}}>
+          <Link to="/login" className="hidden md:flex bg-white border border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors" style={{marginLeft: 8}}>
             Login
-          </button>
+          </Link>
+          <Link to="/signup" className="hidden md:flex bg-blue-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors" style={{marginLeft: 8}}>
+            Sign Up
+          </Link>
           <button
             className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -130,6 +135,12 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
         <div className="md:hidden bg-white border-t border-gray-100">
           <nav className="px-4 py-4 space-y-4">
             <div className="space-y-2">
+              <Link
+                to="/signup"
+                className="block w-full bg-blue-500 text-white px-4 py-2 rounded-lg font-medium text-center hover:bg-blue-600 transition-colors mb-2"
+              >
+                Sign Up
+              </Link>
               <button
                 className="w-full flex justify-between items-center text-gray-700 hover:text-blue-600 transition-colors font-medium"
                 onClick={() => setIsMobileServicesOpen((open) => !open)}
@@ -179,9 +190,9 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
               <Phone className="h-4 w-4 mr-2" />
               +254740786838
             </button>
-            <button className="w-full mt-2 bg-white border border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+            <Link to="/login" className="w-full mt-2 bg-white border border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors block text-center">
               Login
-            </button>
+            </Link>
           </nav>
         </div>
       )}

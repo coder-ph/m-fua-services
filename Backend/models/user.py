@@ -18,6 +18,7 @@ class User(db.Model):
     last_name = db.Column(db.String(50), nullable=False)
     phone = db.Column(db.String(20), unique=True, nullable=False)
     role = db.Column(db.Enum(UserRole), nullable=False, default=UserRole.CLIENT)
+    
     is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
