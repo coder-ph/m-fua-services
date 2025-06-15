@@ -112,9 +112,8 @@ const TestimonialsSection = () => {
 
 
   const total = testimonials.length;
-  const CARDS_TO_SHOW = 4;
-  // Clamp current index between 0 and total - CARDS_TO_SHOW
-  const maxIndex = Math.max(0, total - CARDS_TO_SHOW);
+  // Clamp current index between 0 and total - cardsPerView
+  const maxIndex = Math.max(0, total - cardsPerView);
   
 
   // Seamless infinite loop logic
@@ -148,6 +147,7 @@ const TestimonialsSection = () => {
     setCurrent((prev) => Math.min(maxIndex, prev + 1));
   };
 
+
   // Auto-swiping effect
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -156,7 +156,7 @@ const TestimonialsSection = () => {
         setCurrent((prev) => Math.min(maxIndex, prev + 1));
       }, 5000);
     } else {
-      // Optionally, loop to start:
+      // Loop to start
       timerRef.current = setTimeout(() => {
         setCurrent(0);
       }, 5000);
@@ -193,7 +193,8 @@ const TestimonialsSection = () => {
               ref={trackRef}
               className="flex gap-6 w-full"
               style={{
-                transform: `translateX(-${(100 / testimonials.length) * current}%)`,
+                width: `${(100 / cardsPerView) * testimonials.length}%`,
+                transform: `translateX(-${current * (100 / testimonials.length)}%)`,
                 transition: "transform 0.7s cubic-bezier(0.4,0,0.2,1)",
               }}
             >

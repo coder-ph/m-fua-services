@@ -54,7 +54,7 @@ const ServicesSection = () => (
             Fumigation Services
           </h3>
           <p className="text-gray-600 mb-6">
-            Thoroughfumigation services including kitchens, bedrooms, and living
+            Thorough fumigation services including kitchens, bedrooms, and living
             areas.
           </p>
           <ul className="space-y-2 mb-6">
