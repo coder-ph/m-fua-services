@@ -88,7 +88,7 @@ const Footer = () => (
             </li>
             <li className="flex items-center">
               <Mail className="h-4 w-4 mr-2" />
-              info@Milele Cleaning Services.com
+              Mileleleaning@gmail.com
             </li>
             <li className="flex items-center">
               <MapPin className="h-4 w-4 mr-2" />

@@ -261,10 +261,10 @@ const ContactSection = () => {
                   <div>
                     <p className="font-semibold text-gray-900">Email</p>
                     <p className="text-gray-600">
-                      info@Milele Cleaning Services.com
+                      milelecleaning@gmail.com
                     </p>
                     <p className="text-sm text-gray-500">
-                      We'll respond within 2 hours
+                      We'll respond within 30 minutes
                     </p>
                   </div>
                 </div>
