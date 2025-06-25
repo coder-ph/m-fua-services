@@ -2,7 +2,7 @@
 // Updated: Added Signup button (desktop & mobile)
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Phone, Menu, X, ChevronDown, ChevronUp, Sparkles } from "lucide-react";
+import { Phone, Menu, X, ChevronDown, ChevronUp, } from "lucide-react";
 import logo from "../src/assets/logo.svg";
 
 interface HeaderProps {
@@ -34,7 +34,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
   const handleMouseLeave = () => {
     hoverTimeout.current = setTimeout(() => {
       setIsServicesHovered(false);
-    }, 200); // 200ms delay before hiding
+    }, 200); 
   };
 
   return (
@@ -50,7 +50,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
         </div>
 
         <nav className="hidden md:flex space-x-8">
-          {/* Services dropdown with delay hover fix */}
+         
           <div
             className="relative"
             onMouseEnter={handleMouseEnter}
@@ -112,12 +112,12 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
             <Phone className="h-4 w-4 mr-2" />
             +254740786838
           </button>
-          <Link to="/login" className="hidden md:flex bg-white border border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors" style={{marginLeft: 8}}>
+          {/* <Link to="/login" className="hidden md:flex bg-white border border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors" style={{marginLeft: 8}}>
             Login
           </Link>
           <Link to="/signup" className="hidden md:flex bg-blue-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-600 transition-colors" style={{marginLeft: 8}}>
             Sign Up
-          </Link>
+          </Link> */}
           <button
             className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
