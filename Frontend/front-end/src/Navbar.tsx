@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Phone, Menu, X, ChevronDown, ChevronUp, Sparkles } from "lucide-react";
+import {logo} from "../src/assets/logo.svg"; 
 
 interface HeaderProps {
   isMenuOpen: boolean;
@@ -41,7 +42,7 @@ export default function Navbar({ isMenuOpen, setIsMenuOpen }: HeaderProps) {
       <div className="max-w-7xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <div className="bg-blue-600 p-2 rounded-lg">
-            <Sparkles className="h-6 w-6 text-white" />
+            <logo className="h-6 w-6 text-white" />
           </div>
           <span className="text-xl font-bold text-gray-900">
             Milele Cleaning Services
